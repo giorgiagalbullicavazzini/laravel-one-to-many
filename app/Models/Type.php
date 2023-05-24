@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class Type extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['slug', 'image'];
+    protected $guarded = ['slug'];
 
-    public function projectType() {
-        return $this->belongsTo(Type::class);
+    public function project() {
+        return $this->hasMany(Project::class);
     }
 }
