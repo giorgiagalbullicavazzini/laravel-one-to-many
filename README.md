@@ -9,5 +9,5 @@
 - [x] Create the Type model seeder
 - [x] In the creation and edit forms, the user can specify a project type
 - [x] Establish the validation rules for the project-type relation
-- [ ] If available, print the project type into show.blade.php
+- [x] If available, print the project type into show.blade.php
 - [ ] To manage the project types directly in the admin panel, add the CRUD operations for the Type model
