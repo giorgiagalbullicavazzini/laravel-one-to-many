@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Type;
 use App\Http\Requests\StoreTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
+use App\Models\Project;
+use Illuminate\Support\Str;
 
 class TypeController extends Controller
 {
@@ -15,7 +18,9 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        $types = Type::all();
+
+        return view('admin.types.index', compact('types'));
     }
 
     /**
@@ -25,7 +30,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.types.create');
     }
 
     /**
@@ -36,7 +41,15 @@ class TypeController extends Controller
      */
     public function store(StoreTypeRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $newType = new Type();
+        $newType->fill($data);
+        $newType->slug = Str::slug($data['name']);
+
+        $newType->save();
+
+        return redirect()->route('admin.types.index')->with('message', 'Tipologia creata con successo');
     }
 
     /**
@@ -47,7 +60,7 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        return view('admin.types.show', compact('type'));
     }
 
     /**
@@ -58,7 +71,7 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view('admin.types.edit', compact('type'));
     }
 
     /**
@@ -70,7 +83,13 @@ class TypeController extends Controller
      */
     public function update(UpdateTypeRequest $request, Type $type)
     {
-        //
+        $data = $request->validated();
+
+        $type->slug = Str::slug($data['name']);
+
+        $type->update($data);
+
+        return redirect()->route('admin.types.index')->with('message', 'Tipologia aggiornata con successo');
     }
 
     /**
@@ -81,6 +100,8 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+
+        return redirect()->route('admin.types.index')->with('message', 'Tipologia cancellata con successo');
     }
 }

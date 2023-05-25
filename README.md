@@ -10,4 +10,4 @@
 - [x] In the creation and edit forms, the user can specify a project type
 - [x] Establish the validation rules for the project-type relation
 - [x] If available, print the project type into show.blade.php
-- [ ] To manage the project types directly in the admin panel, add the CRUD operations for the Type model
+- [x] To manage the project types directly in the admin panel, add the CRUD operations for the Type model
