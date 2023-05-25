@@ -17,6 +17,15 @@
                 <textarea class="form-control" id="description" name="description">{{ old('description') }}</textarea>
             </div>
             <div class="mb-3">
+                <label for="type_id" class="form-label">Type</label>
+                <select class="form-select" name="type_id" id="type_id">
+                    <option value="">Select type</option>
+                    @foreach ($types as $type)
+                        <option value="{{ $type->id }}" {{ old('type_id') == $type->id ? 'selected' : '' }}>{{ $type->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
                 <div class="image-preview">
                     <img id="file-image-preview">
                 </div>
